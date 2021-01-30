@@ -8,9 +8,13 @@ thumbnail_per_half_second_dir = os.path.join(SAMPLE_OUTPUTS, "thumbnails-per-hal
 output_video = os.path.join(SAMPLE_OUTPUTS, 'thumbs.mp4')
 
 
-this_dir = os.listdir(thumbnail_dir)
-filepaths = [os.path.join(thumbnail_dir, fname) for fname in this_dir if fname.endswith("jpg")]
 
+vidFolder = os.path.join(SAMPLE_INPUTS, 'VideoHolder')
+
+this_dir = os.listdir(vidFolder)
+print(this_dir)
+filepaths = [os.path.join(vidFolder, fname) for fname in this_dir if fname.endswith("mp4")]
+print(filepaths)
 # filepaths = []
 # for fname in this_dir:
 #     if fname.endswith("jpg"):
@@ -33,6 +37,7 @@ for root, dirs, files in os.walk(thumbnail_per_frame_dir):
             key = None
         if key != None:
             directory[key] = filepath
+            #print(filepath)
 
 new_paths = []
 for k in sorted(directory.keys()):
@@ -45,7 +50,7 @@ for k in sorted(directory.keys()):
 my_clips = []
 for path in list(new_paths):
     frame = ImageClip(path)
-    # print(frame.img) # numpy array
+    #print(frame.img) # numpy array
     my_clips.append(frame.img)
 
 
